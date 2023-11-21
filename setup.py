@@ -2,7 +2,6 @@ import os
 
 from setuptools import setup, find_packages
 
-
 # %%
 
 
@@ -13,7 +12,7 @@ def read(fname):
 setup(
     name='sars_cov2_signals',
     version='2.2',
-    packages=['/modules/', '/AutoSignals/'],  # , "requirements.txt"],
+    # packages=['modules', 'AutoSignals', "requirements.txt"],
     # py_modules=["main.py"],
     url='https://gitlab.phe.gov.uk/gpha/horizon-scanning/sars_cov2_signals_automation',
     license='',
