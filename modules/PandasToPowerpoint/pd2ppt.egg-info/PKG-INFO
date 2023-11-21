@@ -1,0 +1,11 @@
+Metadata-Version: 2.1
+Name: pd2ppt
+Version: 0.1.0
+Summary: Python utility to take a Pandas DataFrame and create a Powerpoint table
+Home-page: https://github.com/robintw/PandasToPowerpoint
+License: BSD-3-Clause
+Platform: UNKNOWN
+License-File: LICENSE
+
+UNKNOWN
+

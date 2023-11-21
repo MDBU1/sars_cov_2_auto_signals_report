@@ -1,0 +1,11 @@
+plotnine==0.8.0
+matplotlib==3.3.4
+pandas==1.1.5
+pd2ppt==0.1.0
+plotly==5.17.0
+seaborn==0.11.2
+numpy==1.19.5
+six==1.16.0
+setuptools==59.6.0
+requests==2.27.1
+tqdm==4.64.1

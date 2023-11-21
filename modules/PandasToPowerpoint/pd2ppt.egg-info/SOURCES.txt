@@ -1,0 +1,14 @@
+LICENSE
+README.md
+setup.py
+pd2ppt/__init__.py
+pd2ppt/_version.py
+pd2ppt/pd2ppt.py
+pd2ppt.egg-info/PKG-INFO
+pd2ppt.egg-info/SOURCES.txt
+pd2ppt.egg-info/dependency_links.txt
+pd2ppt.egg-info/not-zip-safe
+pd2ppt.egg-info/requires.txt
+pd2ppt.egg-info/top_level.txt
+tests/__init__.py
+tests/test_pd2ppt.py
