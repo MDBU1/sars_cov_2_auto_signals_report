@@ -19,6 +19,6 @@ setup(
     author='Mike Brown',
     author_email='michael.d.brown@phe.gov.uk',
     description='This package is intended for the manual and or automation running of signal review analysis which serves function within Horizon Scanning (GPHA) bi-weekly reporting and meetings',
-    long_description=read("README"),
+    long_description=read("README.md"),
     classifiers=["Development Status :: 5 - Production/Stable"],
 )
