@@ -12,7 +12,7 @@ def read(fname):
 setup(
     name='sars_cov2_signals',
     version='2.2',
-    packages=['modules/PandasToPowerpoint', 'AutoSignals', "requirements.txt"],
+    packages=["requirements.txt"],
     # py_modules=["main.py"],
     url='https://gitlab.phe.gov.uk/gpha/horizon-scanning/sars_cov2_signals_automation',
     license='',
