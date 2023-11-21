@@ -50,7 +50,7 @@ class ClassSetupArgparseCommands:
         group_data.add_argument("--path_data",
                                 "-i",
                                 dest="path_data",
-                                required="-local" in sys.argv and "-f" not in sys.argv,
+                                required="-f" not in sys.argv,
                                 help="directory path of datafiles used for offline running")
         group_data.add_argument("--custom_filename",
                                 "-f",

@@ -25,7 +25,9 @@ class ClassRoutineRunning(ClassSetupArgparseCommands):
 
     def meth_return_return_path_input_data(self):
         if self.args.location is True and self.args.filename is None:  # online
-            path_input_data = (f'{phe_mount_point}Mike/auto_signals_development/logs/')  # default online location
+            # path_input_data = (f'{phe_mount_point}Mike/auto_signals_development/last_3_months/')  # default online
+            # location
+            path_input_data = self.args.path_data + "/last_3_months/"
             # self.logger.debug("data being loaded from: " + path_input_data)
             return path_input_data
         elif self.args.location is True and self.args.filename:
@@ -45,7 +47,8 @@ class ClassRoutineRunning(ClassSetupArgparseCommands):
             return 0
 
     def meth_return_blob_log_csvs(self):
-        path_blob = (f'{phe_mount_point}Mike/auto_signals_development/logs/')
+        # path_blob = (f'{phe_mount_point}Mike/auto_signals_development/logs/')
+        path_blob = self.args.path_data + "/logs/"
         list_blob_files = dbutils.fs.ls(path_blob)
         latest_file = str(list_blob_files[-1].name)  # add .sorted
         # print(latest_file)
