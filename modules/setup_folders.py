@@ -81,30 +81,39 @@ class ClassSetupFolders(ClassSignalSpecify):
         path_folder_modules = os.path.dirname(path_setup_file)
         self.logger.debug("path modules folder: " + path_folder_modules)
         # get path to modules sub-folder
-        path_folder_working = os.path.dirname(path_folder_modules)
+        if self.location is True:
+            path_folder_working = self.path_input
+        else:
+            path_folder_working = os.path.dirname(path_folder_modules)
         self.logger.debug("path working directory: " + path_folder_working)
         return path_setup_file, path_folder_modules, path_folder_working
 
-    def meth_return_folders_online(self):
-        # set path to storage explorer location
-        path_setup_file = self.path_input
-        self.logger.debug(f"path storage explorer, signals: {path_setup_file}")
-        # get path of modules folder
-        path_folder_modules = os.path.dirname(path_setup_file)
-        self.logger.debug(f"path storage explorer, signals modules: {path_folder_modules}")
-        # get path to modules sub-folder
-        path_folder_working = os.path.dirname(path_folder_modules)
-        return path_setup_file, path_folder_modules, path_folder_working
+    # def meth_return_folders_online(self):
+    #     # set path to storage explorer location
+    #     path_setup_file = ""
+    #     self.logger.debug(f"path storage explorer, signals: {path_setup_file}")
+    #     # get path of modules folder
+    #     path_folder_modules = path_setup_file + ""
+    #     self.logger.debug(f"path storage explorer, signals modules: {path_folder_modules}")
+    #     # get path to modules sub-folder
+    #     if self.location is True:
+    #         path_folder_working = self.path_input
+    #     else:
+    #         path_folder_working = os.path.dirname(path_folder_modules)
+    #     return path_setup_file, path_folder_modules, path_folder_working
 
     def meth_return_folders(self):
-        if self.location is True:
-            path_setup_file, path_folder_modules, path_folder_working = self.meth_return_folders_online()
-            return path_setup_file, path_folder_modules, path_folder_working
-        elif self.location is False:
-            path_setup_file, path_folder_modules, path_folder_working = self.meth_return_folders_local()
-            return path_setup_file, path_folder_modules, path_folder_working
-        else:
-            print("ERROR")
+        # if self.location is True:
+        #     path_setup_file, path_folder_modules, path_folder_working = self.meth_return_folders_online()
+        #     return path_setup_file, path_folder_modules, path_folder_working
+        # elif self.location is False:
+        #     path_setup_file, path_folder_modules, path_folder_working = self.meth_return_folders_local()
+        #     return path_setup_file, path_folder_modules, path_folder_working
+
+        # else:
+        #    print("ERROR")
+        path_setup_file, path_folder_modules, path_folder_working = self.meth_return_folders_local()
+        return path_setup_file, path_folder_modules, path_folder_working
 
     def meth_setup_parent_save_folder(self):
         """

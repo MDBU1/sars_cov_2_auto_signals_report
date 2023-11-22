@@ -50,7 +50,7 @@ class ClassSetupArgparseCommands:
         group_data.add_argument("--path_data",
                                 "-i",
                                 dest="path_data",
-                                required="-f" not in sys.argv,
+                                required="-local" in sys.argv and "-f" not in sys.argv,
                                 help="directory path of datafiles used for offline running")
         group_data.add_argument("--custom_filename",
                                 "-f",
@@ -100,7 +100,7 @@ class ClassSetupArgparseCommands:
         group_identifier.add_argument("--data_region",
                                       "-r",
                                       dest="data_region",
-                                      choices=["uk", "eng"],
+                                      choices=["eng", "int"],
                                       required="-routine" not in sys.argv,
                                       help="option to select International or UK analysis to be run, required if not"
                                            "running routine analysis")

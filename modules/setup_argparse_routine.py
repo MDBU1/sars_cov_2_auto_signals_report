@@ -3,6 +3,8 @@ import os
 from time import sleep
 import pandas as pd
 from tqdm import tqdm, trange
+import uuid
+import pathlib
 
 from modules.class_signal_specify import ClassSignalSpecify
 from modules.output_signals_log import ClassSignalsLogUpdate, ClassLogInfo
@@ -23,11 +25,29 @@ class ClassRoutineRunning(ClassSetupArgparseCommands):
         self.df_logs, self.df_log_sim_active, self.list_log_sim_active_no, self.signal_no, self.lineage,\
             self.mutations, self.data_region = self.meth_is_routine()
 
+    def meth_get_databricks_libaries(self):
+        if self.args.location is True:
+            from genomicslib import database as db
+            from genomicslib import storage
+            from genomicslib.database import get_genomics_creds, get_pheip_creds, spark_read_sql
+        return db, storage, get_genomics_creds, get_pheip_creds
+
+    def meth_databricks_storage(self):
+        db, storage, get_genomics_creds, get_pheip_creds = self.meth_get_databricks_libaries()
+        mount_point = storage.mount_genomics()
+        phe_mount_point = storage.mount_phe_to_edge()
+
+        local_working_directory = os.path.join(os.path.sep, f'{uuid.uuid4()}')
+        os.environ["LOCAL_WORKING_DIR"] = local_working_directory
+
+        if not os.path.exists(local_working_directory):
+            os.mkdir(local_working_directory)
+        return mount_point, phe_mount_point
+
     def meth_return_return_path_input_data(self):
         if self.args.location is True and self.args.filename is None:  # online
-            # path_input_data = (f'{phe_mount_point}Mike/auto_signals_development/last_3_months/')  # default online
-            # location
-            path_input_data = self.args.path_data
+            mount_point, phe_mount_point = self.meth_databricks_storage()
+            path_input_data = f'{phe_mount_point}Mike/sars_cov2_signals_development/'  # default online location
             # self.logger.debug("data being loaded from: " + path_input_data)
             return path_input_data
         elif self.args.location is True and self.args.filename:
@@ -47,8 +67,8 @@ class ClassRoutineRunning(ClassSetupArgparseCommands):
             return 0
 
     def meth_return_blob_log_csvs(self):
-        # path_blob = (f'{phe_mount_point}Mike/auto_signals_development/logs/')
-        path_blob = self.args.path_data + "/logs/"
+        mount_point, phe_mount_point = self.meth_databricks_storage()
+        path_blob = f'{phe_mount_point}Mike/sars_cov2_signals_development'
         list_blob_files = dbutils.fs.ls(path_blob)
         latest_file = str(list_blob_files[-1].name)  # add .sorted
         # print(latest_file)
@@ -74,7 +94,7 @@ class ClassRoutineRunning(ClassSetupArgparseCommands):
     def meth_is_routine(self):
         if self.args.routine and self.args.location is True:
             print("routine analysis, log to be overwritten")
-            df_logs = self.meth_return_local_log_csvs()
+            df_logs = self.meth_return_blob_log_csvs()
             df_log_sim_active, list_log_sim_active_no = self.meth_return_signals_active(df_logs)
             signal_no, lineage, mutations, data_region = self.meth_automate_log_signal_calls(df_log_sim_active,
                                                                                              list_log_sim_active_no,
