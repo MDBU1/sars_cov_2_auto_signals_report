@@ -27,7 +27,7 @@ class ClassRoutineRunning(ClassSetupArgparseCommands):
         if self.args.location is True and self.args.filename is None:  # online
             # path_input_data = (f'{phe_mount_point}Mike/auto_signals_development/last_3_months/')  # default online
             # location
-            path_input_data = self.args.path_data + "/last_3_months/"
+            path_input_data = self.args.path_data
             # self.logger.debug("data being loaded from: " + path_input_data)
             return path_input_data
         elif self.args.location is True and self.args.filename:
@@ -74,7 +74,7 @@ class ClassRoutineRunning(ClassSetupArgparseCommands):
     def meth_is_routine(self):
         if self.args.routine and self.args.location is True:
             print("routine analysis, log to be overwritten")
-            df_logs = self.meth_return_blob_log_csvs()
+            df_logs = self.meth_return_local_log_csvs()
             df_log_sim_active, list_log_sim_active_no = self.meth_return_signals_active(df_logs)
             signal_no, lineage, mutations, data_region = self.meth_automate_log_signal_calls(df_log_sim_active,
                                                                                              list_log_sim_active_no,

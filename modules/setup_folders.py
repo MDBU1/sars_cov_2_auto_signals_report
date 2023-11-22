@@ -87,10 +87,10 @@ class ClassSetupFolders(ClassSignalSpecify):
 
     def meth_return_folders_online(self):
         # set path to storage explorer location
-        path_setup_file = ""
+        path_setup_file = self.path_input
         self.logger.debug(f"path storage explorer, signals: {path_setup_file}")
         # get path of modules folder
-        path_folder_modules = path_setup_file + ""
+        path_folder_modules = os.path.dirname(path_setup_file)
         self.logger.debug(f"path storage explorer, signals modules: {path_folder_modules}")
         # get path to modules sub-folder
         path_folder_working = os.path.dirname(path_folder_modules)
