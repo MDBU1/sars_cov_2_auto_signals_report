@@ -62,7 +62,6 @@ class ClassRoutineRunning(ClassSetupArgparseCommands):
 
     def meth_return_return_path_input_data(self):
         if self.args.location is True and self.args.filename is None:  # online
-            self.get_dbutils()
             mount_point, phe_mount_point = self.meth_databricks_storage()
             path_input_data = f'{phe_mount_point}Mike/sars_cov2_signals_development/'  # default online location
             # self.logger.debug("data being loaded from: " + path_input_data)
