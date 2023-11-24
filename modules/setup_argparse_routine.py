@@ -27,7 +27,7 @@ class ClassRoutineRunning(ClassSetupArgparseCommands):
         self.df_logs, self.df_log_sim_active, self.list_log_sim_active_no, self.signal_no, self.lineage,\
             self.mutations, self.data_region = self.meth_is_routine()
 
-    def get_dbutils():
+    def get_dbutils(self):
         from pyspark.sql import SparkSession
         spark = SparkSession.getActiveSession()
         if spark.conf.get("spark.databricks.service.client.enabled") == "true":
