@@ -6,7 +6,6 @@ from tqdm import tqdm, trange
 import uuid
 import pathlib
 import IPython
-import pyspark
 
 from modules.class_signal_specify import ClassSignalSpecify
 from modules.output_signals_log import ClassSignalsLogUpdate, ClassLogInfo
@@ -29,7 +28,7 @@ class ClassRoutineRunning(ClassSetupArgparseCommands):
 
     def get_dbutils(self):
         from pyspark.sql import SparkSession
-        spark = SparkSession.getActiveSession()
+        spark = SparkSession.builder.getOrCreate()
         if spark.conf.get("spark.databricks.service.client.enabled") == "true":
             from pyspark.dbutils import DBUtils
             return DBUtils(spark)
