@@ -5,6 +5,7 @@ import pandas as pd
 from tqdm import tqdm, trange
 import uuid
 import pathlib
+import IPython
 
 from modules.class_signal_specify import ClassSignalSpecify
 from modules.output_signals_log import ClassSignalsLogUpdate, ClassLogInfo
