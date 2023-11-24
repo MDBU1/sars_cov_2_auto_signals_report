@@ -36,6 +36,7 @@ class ClassRoutineRunning(ClassSetupArgparseCommands):
 
     def meth_databricks_storage(self):
         dbutils = IPython.get_ipython().user_ns["dbutils"]
+        dbutils.fs.ls("dbfs:/databricks/")
         db, storage, get_genomics_creds, get_pheip_creds = self.meth_get_databricks_libaries()
         print("hi")
         print(storage)
