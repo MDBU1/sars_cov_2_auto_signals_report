@@ -1,7 +1,9 @@
 import os
 from pathlib import Path
+import IPython
 
 from modules.class_signal_specify import ClassSignalSpecify
+
 
 
 # %%
