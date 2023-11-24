@@ -14,23 +14,18 @@ class ClassSignalsLogUpdate(ClassPresentationSetup):
 
     def meth_return_signal_specification_parameters(self):
         lineage = self.lineage
-        mutations = str(", ".join(self.mutations))
+        mutations = str(" ".join(self.mutations))
         nucleotides = self.nucleotides
 
-        print(lineage, mutations, nucleotides)
-        print(type(mutations))
-        if lineage is None or lineage.strip():
+        if lineage is None or lineage == "":
             str_lineage = "none"
-            print("hi")
         else:
             str_lineage = lineage
 
-        if mutations == "no_specified_mutations" or mutations == "[]":
+        if mutations == "no_specified_mutations" or mutations == "":
             str_mutations = "none"
-            print("hi2")
         else:
             str_mutations = mutations
-            print("hi4")
 
         if nucleotides == "no_specified_aa" or "[]":
             nucleotides = "none"
@@ -61,7 +56,6 @@ class ClassSignalsLogUpdate(ClassPresentationSetup):
         # print(index_position)
 
         lineage, mutations, nucleotides = self.meth_return_signal_specification_parameters()
-        print(lineage, mutations, nucleotides)
         line = pd.DataFrame({
             "signal_id": self.signal_no,
             "lineage": lineage,
@@ -92,7 +86,6 @@ class ClassLogInfo:
     def meth_combine_signal_region_rows(self):
         df = pd.concat(self._lines)
         new_df = df.groupby(['signal_id']).max().reset_index()
-        new_df.to_csv("/home/phe.gov.uk/michael.d.brown/Desktop/latest_data/testing.csv")
         return new_df
 
     def meth_update_log(self, input_log):
