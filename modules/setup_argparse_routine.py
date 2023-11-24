@@ -42,12 +42,11 @@ class ClassRoutineRunning(ClassSetupArgparseCommands):
             from genomicslib import database as db
             from genomicslib import storage
             from genomicslib.database import get_genomics_creds, get_pheip_creds, spark_read_sql
-        return db, storage, get_genomics_creds, get_pheip_creds
 
     def meth_databricks_storage(self):
         # dbutils = IPython.get_ipython().user_ns["dbutils"]
-        dbutils.fs.ls("dbfs:/databricks/")
-        db, storage, get_genomics_creds, get_pheip_creds = self.meth_get_databricks_libaries()
+        # dbutils.fs.ls("dbfs:/databricks/")
+        self.meth_get_databricks_libaries()
         print("hi")
         print(storage)
         mount_point = storage.mount_genomics()
