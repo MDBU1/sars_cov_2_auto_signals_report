@@ -6,6 +6,7 @@ from tqdm import tqdm, trange
 import uuid
 import pathlib
 import IPython
+import pyspark
 
 from modules.class_signal_specify import ClassSignalSpecify
 from modules.output_signals_log import ClassSignalsLogUpdate, ClassLogInfo
@@ -25,6 +26,16 @@ class ClassRoutineRunning(ClassSetupArgparseCommands):
         #    self.meth_automate_log_signal_calls()
         self.df_logs, self.df_log_sim_active, self.list_log_sim_active_no, self.signal_no, self.lineage,\
             self.mutations, self.data_region = self.meth_is_routine()
+
+    def get_dbutils():
+        from pyspark.sql import SparkSession
+        spark = SparkSession.getActiveSession()
+        if spark.conf.get("spark.databricks.service.client.enabled") == "true":
+            from pyspark.dbutils import DBUtils
+            return DBUtils(spark)
+        else:
+            import IPython
+            return IPython.get_ipython().user_ns["dbutils"]
 
     def meth_get_databricks_libaries(self):
         if self.args.location is True:
@@ -52,6 +63,7 @@ class ClassRoutineRunning(ClassSetupArgparseCommands):
 
     def meth_return_return_path_input_data(self):
         if self.args.location is True and self.args.filename is None:  # online
+            self.get_dbutils()
             mount_point, phe_mount_point = self.meth_databricks_storage()
             path_input_data = f'{phe_mount_point}Mike/sars_cov2_signals_development/'  # default online location
             # self.logger.debug("data being loaded from: " + path_input_data)
