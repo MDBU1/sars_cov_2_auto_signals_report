@@ -28,7 +28,7 @@ class ClassRoutineRunning(ClassSetupArgparseCommands):
 
     def meth_get_databricks_libaries(self):
         if self.args.location is True:
-            print("yolo")
+            print("online")
             from genomicslib import database as db
             from genomicslib import storage
             from genomicslib.database import get_genomics_creds, get_pheip_creds, spark_read_sql
@@ -36,6 +36,8 @@ class ClassRoutineRunning(ClassSetupArgparseCommands):
 
     def meth_databricks_storage(self):
         db, storage, get_genomics_creds, get_pheip_creds = self.meth_get_databricks_libaries()
+        print("hi")
+        print(storage)
         mount_point = storage.mount_genomics()
         phe_mount_point = storage.mount_phe_to_edge()
 
