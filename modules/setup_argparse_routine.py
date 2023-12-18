@@ -161,9 +161,9 @@ class ClassRoutineRunning(ClassSetupArgparseCommands):
         temp_df_log = temp_df_log.replace("none", "")
         logs_run = ClassLogInfo()
         for x in tqdm(input_list_log_active_no):
-            # temp_df = pd.DataFrame(temp_df_log[temp_df_log["signal_id"].eq(x)].max())
-            temp_df = pd.DataFrame(temp_df_log[temp_df_log["signal_id"].astype(str).eq(x)])
-            temp_df = temp_df[temp_df["review_no"].eq(temp_df["review_no"].max())]
+            temp_df = pd.DataFrame(temp_df_log[temp_df_log["signal_id"].eq(x)].max())
+            # temp_df = pd.DataFrame(temp_df_log[temp_df_log["signal_id"].astype(str).eq(x)])
+            # temp_df = temp_df[temp_df["review_no"].eq(temp_df["review_no"].max())]
             signal_id = temp_df.loc["signal_id"][0]
             lineage = temp_df.loc["lineage"][0]
             mutations = temp_df.loc["mutations"][0].split()
