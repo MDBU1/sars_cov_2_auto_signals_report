@@ -91,7 +91,7 @@ class ClassRoutineRunning(ClassSetupArgparseCommands):
                                   latest_file)
         wd = pathlib.Path.cwd()
         dbutils.fs.cp(f'dbfs:{ste_ref_fp}', f"file:{wd / str(latest_file)}")
-        df_logs = pd.read_csv(latest_file, encoding='unicode_escape')
+        df_logs = pd.read_csv(latest_file, encoding='utf8')
         list_blob_csvs = []
         for f in range(len(list_blob_files)):
             df = list_blob_files[f]
@@ -103,7 +103,7 @@ class ClassRoutineRunning(ClassSetupArgparseCommands):
         input_df_string = "log"
         list_input_csv = sorted(glob.glob(self.path_input + "/*.csv"))
         latest_log = list(filter(lambda files: input_df_string in files, list_input_csv))[-1]
-        latest_log = pd.read_csv(latest_log, encoding='unicode_escape')
+        latest_log = pd.read_csv(latest_log, encoding='utf8')
         return latest_log
 
     def meth_is_routine(self):
