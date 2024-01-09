@@ -73,9 +73,9 @@ class ClassSignalSelect(ClassLoadData):
             if mutations == "no_specified_mutations":
                 df_mutations = temp_df
                 return df_mutations
-            elif "any" in mutations:
+            elif "ANY" in mutations:
                 self.logger.debug(f"mutations search to include any of: {mutations}")
-                df_mutations = temp_df[temp_df["mutations"].astype(str).str.contains(",".join(mutations), na=False)]
+                df_mutations = temp_df[temp_df["mutations"].astype(str).str.contains("|".join(mutations), na=False)]
                 return df_mutations
             else:
                 mutations_s = set(mutations)

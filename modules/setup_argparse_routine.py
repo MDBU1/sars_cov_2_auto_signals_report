@@ -91,7 +91,7 @@ class ClassRoutineRunning(ClassSetupArgparseCommands):
                                   latest_file)
         wd = pathlib.Path.cwd()
         dbutils.fs.cp(f'dbfs:{ste_ref_fp}', f"file:{wd / str(latest_file)}")
-        df_logs = pd.read_csv(latest_file, encoding='cp1252')
+        df_logs = pd.read_csv(latest_file)
         list_blob_csvs = []
         for f in range(len(list_blob_files)):
             df = list_blob_files[f]
@@ -103,7 +103,7 @@ class ClassRoutineRunning(ClassSetupArgparseCommands):
         input_df_string = "log"
         list_input_csv = sorted(glob.glob(self.path_input + "/*.csv"))
         latest_log = list(filter(lambda files: input_df_string in files, list_input_csv))[-1]
-        latest_log = pd.read_csv(latest_log, encoding='cp1252')
+        latest_log = pd.read_csv(latest_log)
         return latest_log
 
     def meth_is_routine(self):
@@ -161,7 +161,7 @@ class ClassRoutineRunning(ClassSetupArgparseCommands):
         temp_df_log = temp_df_log.replace("none", "")
         logs_run = ClassLogInfo()
         for x in tqdm(input_list_log_active_no):
-            temp_df = pd.DataFrame(temp_df_log[temp_df_log["signal_id"].astype(str).eq(x)].max())
+            temp_df = pd.DataFrame(temp_df_log[temp_df_log["signal_id"].eq(x)].max())
             # temp_df = pd.DataFrame(temp_df_log[temp_df_log["signal_id"].astype(str).eq(x)])
             # temp_df = temp_df[temp_df["review_no"].eq(temp_df["review_no"].max())]
             signal_id = temp_df.loc["signal_id"][0]
