@@ -1,6 +1,6 @@
 # <span style="color:maroon">SARs-CoV-2 Signals Analysis</span>
 <span style="color:grey">Version: 2.2.</span> \
-<span style="color:grey">Last updated: 20.11.23.</span>
+<span style="color:grey">Last updated: 29.11.23.</span>
 
 
 ## 1. Summary
@@ -27,18 +27,18 @@ sequences.
   - From StorageExplorer copy most recent metadata_source_files: [yyyymmdd_{region}_last_100_days.csv]
   - If required from StorageExplorer copy most recent signals_log: [yyyymmdd_sars_cov_2_signals_log_v1.csv]
   - StorageExplorer metadata data folder can be found: 
-  https://edgeprdphestr.blob.core.windows.net/phe-to-edge/Mike/last_3_months/
+  https://edgeprdphestr.blob.core.windows.net/phe-to-edge/horizon_scanning_data/sars_cov2_signals_reporting/
   - StorageExplorer signals_log folder can be found: 
-  https://edgeprdphestr.blob.core.windows.net/phe-to-edge/Mike/auto_signals_development/logs/
+  https://edgeprdphestr.blob.core.windows.net/phe-to-edge/horizon_scanning_data/sars_cov2_signals_reporting/
 - Online
   - Acquire access to GPHA Databricks
   - Online repo can be found:
   - Use signals_trigger notebook in which the entry box acts as a terminal
   - signals_trigger notebook can be found:
   - note default signal analysis save location: 
-  https://edgeprdphestr.blob.core.windows.net/phe-to-edge/Mike/auto_signals_development/signal_results/
+  https://edgeprdphestr.blob.core.windows.net/phe-to-edge/horizon_scanning_data/sars_cov2_signals_reporting/
   - note default signals_log save location:
-  https://edgeprdphestr.blob.core.windows.net/phe-to-edge/Mike/auto_signals_development/logs/
+  https://edgeprdphestr.blob.core.windows.net/phe-to-edge/horizon_scanning_data/sars_cov2_signals_reporting/
 
   
 ### 2.2 Inputs (files)
@@ -123,7 +123,7 @@ parent folder).
 ## 5. Miscellaneous
 - ~~URGENT fix issue with collapsing lineage nomenclature aliases!~~ (14.11.23)
 - Fix compare lineage mutation profile to closest variant
-- Fix DataBricks integration
+- ~~Fix DataBricks integration~~
 - ~~Fix date_begin command~~ (16.11.23)
 - Finish growth analysis methods
 - ~~Finish updates to logs when -routine settings~~ (17.11.23)
