@@ -112,7 +112,6 @@ class ClassRoutineRunning(ClassSetupArgparseCommands):
             print("routine analysis, log to be overwritten")
             df_logs = self.meth_return_blob_log_csvs()
             df_log_sim_active, list_log_sim_active_no = self.meth_return_signals_active(df_logs)
-            self.meth_break_if_non_active(df_log_sim_active)
             signal_no, lineage, mutations, data_region = self.meth_automate_log_signal_calls(df_log_sim_active,
                                                                                              list_log_sim_active_no,
                                                                                              df_logs)
@@ -120,7 +119,6 @@ class ClassRoutineRunning(ClassSetupArgparseCommands):
         elif self.args.routine is True and self.args.location is False:
             df_logs = self.meth_return_local_log_csvs()
             df_log_sim_active, list_log_sim_active_no = self.meth_return_signals_active(df_logs)
-            self.meth_break_if_non_active(df_log_sim_active)
             signal_no, lineage, mutations, data_region = self.meth_automate_log_signal_calls(df_log_sim_active,
                                                                                              list_log_sim_active_no,
                                                                                              df_logs)
@@ -155,12 +153,15 @@ class ClassRoutineRunning(ClassSetupArgparseCommands):
                 df_input = temp_df
                 list_log_sim_active.append(df_input)
                 list_log_sim_active_no.append(x)
-        df_log_sim_active = pd.concat(list_log_sim_active)
-        print(f"active signals: {list_log_sim_active_no}")
+        try:
+            df_log_sim_active = pd.concat(list_log_sim_active)
+            print(f"active signals: {list_log_sim_active_no}")
+        except:
+            sys.exit("NO ACTIVE SIGNALS")
         return df_log_sim_active, list_log_sim_active_no
 
-    def meth_break_if_non_active(self, df_log_sim_active):
-        if len(df_log_sim_active) == 0:
+    def meth_break_if_non_active(self):
+        if len(self.list_log_sim_active_no) == 0:
             sys.exit("NO ACTIVE SIGNALS")
 
     def meth_automate_log_signal_calls(self, input_active_log, input_list_log_active_no, input_full_log):
