@@ -1,5 +1,6 @@
 import glob
 import os
+import sys
 from time import sleep
 import pandas as pd
 from tqdm import tqdm, trange
@@ -111,12 +112,14 @@ class ClassRoutineRunning(ClassSetupArgparseCommands):
             print("routine analysis, log to be overwritten")
             df_logs = self.meth_return_blob_log_csvs()
             df_log_sim_active, list_log_sim_active_no = self.meth_return_signals_active(df_logs)
+            self.meth_break_if_non_active()
             signal_no, lineage, mutations, data_region = self.meth_automate_log_signal_calls(df_log_sim_active,
                                                                                              list_log_sim_active_no,
                                                                                              df_logs)
             return df_logs, df_log_sim_active, list_log_sim_active_no, signal_no, lineage, mutations, data_region
         elif self.args.routine is True and self.args.location is False:
             df_logs = self.meth_return_local_log_csvs()
+            self.meth_break_if_non_active()
             df_log_sim_active, list_log_sim_active_no = self.meth_return_signals_active(df_logs)
             signal_no, lineage, mutations, data_region = self.meth_automate_log_signal_calls(df_log_sim_active,
                                                                                              list_log_sim_active_no,
@@ -155,6 +158,10 @@ class ClassRoutineRunning(ClassSetupArgparseCommands):
         df_log_sim_active = pd.concat(list_log_sim_active)
         print(f"active signals: {list_log_sim_active_no}")
         return df_log_sim_active, list_log_sim_active_no
+
+    def meth_break_if_non_active(self):
+        if len(self.list_log_sim_active_no) == 0:
+            sys.exit("NO ACTIVE SIGNALS")
 
     def meth_automate_log_signal_calls(self, input_active_log, input_list_log_active_no, input_full_log):
         temp_df_log = input_active_log

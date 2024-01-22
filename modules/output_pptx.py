@@ -28,11 +28,11 @@ class ClassPresentationSetup(ClassSignalStatistics):
     # Slide Components
     def meth_return_prs_name(self):
         mutations = " ".join(self.mutations)
-        if mutations is "no_specified_mutations":
+        if mutations == "no_specified_mutations":
             str_mutations = " "
         else:
             str_mutations = mutations.replace("_", " ")
-        if self.lineage is "no_specified_lineage":
+        if self.lineage == "no_specified_lineage":
             str_lineage = " "
         else:
             str_lineage = self.lineage.replace("_", " ")
