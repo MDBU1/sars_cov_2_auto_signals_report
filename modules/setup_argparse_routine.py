@@ -160,10 +160,6 @@ class ClassRoutineRunning(ClassSetupArgparseCommands):
             sys.exit("NO ACTIVE SIGNALS")
         return df_log_sim_active, list_log_sim_active_no
 
-    def meth_break_if_non_active(self):
-        if len(self.list_log_sim_active_no) == 0:
-            sys.exit("NO ACTIVE SIGNALS")
-
     def meth_automate_log_signal_calls(self, input_active_log, input_list_log_active_no, input_full_log):
         temp_df_log = input_active_log
         temp_df_log = temp_df_log.replace("none", "")
